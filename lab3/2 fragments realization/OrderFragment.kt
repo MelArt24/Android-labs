@@ -27,7 +27,11 @@ class OrderFragment : Fragment() {
         val dataFile = DataFile(requireContext())
         val orderText = dataFile.readFile("my_data_for_lab3.txt")
 
-        binding.tvResult.text = orderText
+        if(orderText.toString().isEmpty()) {
+            binding.tvResult.text = "Your file is empty"
+        } else {
+            binding.tvResult.text = orderText
+        }
 
         binding.btnEdit.setOnClickListener {
             val context = requireContext()
@@ -48,6 +52,7 @@ class OrderFragment : Fragment() {
 
         binding.btnClear.setOnClickListener {
             dataFile.clearFile("my_data_for_lab3.txt")
+            binding.tvResult.text = "Your file is empty"
         }
 
         binding.btnBack.setOnClickListener {
